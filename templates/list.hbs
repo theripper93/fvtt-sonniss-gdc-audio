@@ -1,0 +1,17 @@
+<ul class="flexcol scrollable" style="max-height: 70vh;padding: 0;gap: 0;">
+    {{#each sounds as |sound|}}
+    <li style="display: flex;justify-content: space-between;align-items: center; border-bottom: 1px solid #8a8a8a3d;padding-bottom: 0.25rem;"
+        draggable="true" data-url="{{sound.url}}" data-display-name="{{sound.displayName}}"
+        data-search="{{sound.search}}">
+        <div class="flexcol">
+            <span style="text-transform: capitalize;">{{sound.displayName}}</span>
+        </div>
+        <div class="flexrow" style="gap: 0.3rem;flex-wrap: nowrap;">
+            <button style="    max-width: 2rem;" data-action="playSound" data-path="{{sound.url}}"><i class="fas fa-play"></i></button>
+            <button style="    max-width: 2rem;" data-action="stopSound" data-path="{{sound.url}}"><i class="fas fa-stop"></i></button>
+            <button style="    max-width: 2rem;" data-action="copyClipboard" data-path="{{sound.url}}"><i class="fas fa-copy"></i></button>
+            <button style="    max-width: 2rem;" data-action="copyFile" data-path="{{sound.url}}"><i class="fas fa-file-download"></i></button>
+        </div>
+    </li>
+    {{/each}}
+</ul>

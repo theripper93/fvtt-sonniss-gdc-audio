@@ -4,7 +4,31 @@ const SETTING_CACHE = {};
 const DEFAULT_CACHE = false;
 
 export function registerSettings() {
-    const settings = {};
+    const settings = {
+        folder: {
+            name: `${MODULE_ID}.settings.folder.name`,
+            hint: `${MODULE_ID}.settings.folder.hint`,
+            scope: "world",
+            config: true,
+            type: String,
+            default: "",
+            filePicker: "folder",
+        },
+        autoCopy: {
+            name: `${MODULE_ID}.settings.autoCopy.name`,
+            hint: `${MODULE_ID}.settings.autoCopy.hint`,
+            scope: "world",
+            config: true,
+            type: Boolean,
+            default: true,
+        },
+        inFolder: {
+            scope: "world",
+            config: false,
+            type: Object,
+            default: {},
+        },
+    };
 
     registerSettingsArray(settings);
 }

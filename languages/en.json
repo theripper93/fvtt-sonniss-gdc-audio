@@ -1,7 +1,19 @@
 {
-    "module-id": {
-        "settings": {},
-        "app": {},
+    "fvtt-sonniss-gdc-audio": {
+        "sidebarButtonText": "SONNISS GDC Sound Browser",
+        "settings": {
+            "folder": {
+                "name": "Copy destination folder",
+                "hint": "The folder to store the audio files in when copying them or auto copying them."
+            },
+            "autoCopy": {
+                "name": "Auto copy audio files",
+                "hint": "Automatically copy audio files to the destination folder when dragging them into the canvas."
+            }
+        },
+        "sound-browser": {
+            "title": "SONNISS GDC Sound Browser"
+        },
         "flags": {}
     }
 }

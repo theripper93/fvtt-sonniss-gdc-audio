@@ -1,7 +1,7 @@
 {
-  "title": "module-name",
+  "title": "Sonniss GDC Audio",
   "description": "desc",
-  "id": "module-id",
+  "id": "fvtt-sonniss-gdc-audio",
   "version": "1.0",
   "authors": [
     {
@@ -55,16 +55,11 @@
     "styles/module.css"
   ],
   "packs": [],
-  "url": "https://github.com/theripper93/module-id",
-  "manifest": "https://github.com/theripper93/module-id/releases/latest/download/module.json",
+  "url": "https://github.com/theripper93/fvtt-sonniss-gdc-audio",
+  "manifest": "https://github.com/theripper93/fvtt-sonniss-gdc-audio/releases/latest/download/module.json",
   "download": "",
   "relationships": {
     "requires": [
-      {
-        "id": "lib-wrapper",
-        "type": "module",
-        "compatibility": {}
-      }
     ]
   },
   "compatibility": {

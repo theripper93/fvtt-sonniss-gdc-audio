@@ -20,4 +20,6 @@ for file_name in files_to_move:
     if os.path.isfile(file_path):  # Check if it's a file
         shutil.move(file_path, folder_2)
 
-print(f"Moved {len(files_to_move)} files from FOLDER_1 to FOLDER_2.")
+files_left_in_folder_1 = os.listdir(folder_1)
+
+print(f"Moved {len(files_to_move)} files from FOLDER_1 to FOLDER_2. There are {len(files_left_in_folder_1)} files left in FOLDER_1.")

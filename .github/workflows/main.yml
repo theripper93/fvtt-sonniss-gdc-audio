@@ -23,12 +23,7 @@ jobs:
         download: https://github.com/${{github.repository}}/releases/download/${{github.event.release.tag_name}}/module.zip
 
     # Create a zip file with all files required by the module to add to the release
-    - run: |
-        zip -9 -r -q ./module.zip module.json index.js index.js.map LICENSE styles/ templates/ languages/ assets/
-        FILE_SIZE=$(stat -c%s "./module.zip")
-        echo "Module zip size: $FILE_SIZE bytes"
-        echo "::warning::Module zip size is $FILE_SIZE bytes"
-
+    - run: zip -9 -r -q ./module.zip module.json index.js index.js.map LICENSE styles/ templates/ languages/ assets/
 
     # Create a release for this specific version
     - name: Update Release with Files

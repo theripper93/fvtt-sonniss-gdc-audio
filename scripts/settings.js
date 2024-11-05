@@ -1,3 +1,4 @@
+import {SoundBrowser} from "./app/app.js";
 import {MODULE_ID} from "./main.js";
 
 const SETTING_CACHE = {};
@@ -22,11 +23,14 @@ export function registerSettings() {
             type: Boolean,
             default: true,
         },
-        inFolder: {
+        customMetadata: {
             scope: "world",
             config: false,
             type: Object,
             default: {},
+            onChange: (value) => {
+                SoundBrowser.mergeMetadata();
+            },
         },
     };
 

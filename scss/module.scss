@@ -5,5 +5,18 @@
         i{
             margin: 0.25rem;
         }
+        &.active{
+            color: yellow;
+        }
+        &.custom-url{
+            color: lime;
+        }
+    }
+
+    li{
+        input{
+            background: transparent;
+            border: none;
+        }
     }
 }

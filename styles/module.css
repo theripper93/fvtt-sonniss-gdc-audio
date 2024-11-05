@@ -1,3 +1,13 @@
 .application.sound-browser button i {
   margin: 0.25rem;
+}
+.application.sound-browser button.active {
+  color: yellow;
+}
+.application.sound-browser button.custom-url {
+  color: lime;
+}
+.application.sound-browser li input {
+  background: transparent;
+  border: none;
 }/*# sourceMappingURL=module.css.map */

@@ -19,4 +19,9 @@ Hooks.on("init", () => {
         };
         buttonContainer.appendChild(button);
     });
+
+});
+
+Hooks.on("ready", () => {
+    new SoundBrowser().render(true);
 });

@@ -1,16 +1,18 @@
 <ul class="flexcol scrollable" style="max-height: 70vh;padding: 0;gap: 0;">
     {{#each sounds as |sound|}}
-    <li style="display: flex;justify-content: space-between;align-items: center; border-bottom: 1px solid #8a8a8a3d;padding-bottom: 0.25rem;"
+    <li style="display: flex; gap: 0.3rem;justify-content: space-between;align-items: center; border-bottom: 1px solid #8a8a8a3d;padding-bottom: 0.25rem;"
         draggable="true" data-url="{{sound.url}}" data-display-name="{{sound.displayName}}"
         data-search="{{sound.search}}">
-        <div class="flexcol">
-            <span style="text-transform: capitalize;">{{sound.displayName}}</span>
+        <div class="flexcol" style="flex:1;">
+            <input type="text" value="{{sound.displayName}}"></input>
         </div>
         <div class="flexrow" style="gap: 0.3rem;flex-wrap: nowrap;">
-            <button style="    max-width: 2rem;" data-action="playSound" data-path="{{sound.url}}"><i class="fas fa-play"></i></button>
-            <button style="    max-width: 2rem;" data-action="stopSound" data-path="{{sound.url}}"><i class="fas fa-stop"></i></button>
-            <button style="    max-width: 2rem;" data-action="copyClipboard" data-path="{{sound.url}}"><i class="fas fa-copy"></i></button>
-            <button style="    max-width: 2rem;" data-action="copyFile" data-path="{{sound.url}}"><i class="fas fa-file-download"></i></button>
+            <span>{{sound.duration}}</span>
+            <button style="max-width: 2rem;" data-tooltip="Toggle favorite" class="{{#if sound.favorite}}active{{/if}}" data-action="toggleFavorite" data-path="{{sound.url}}"><i class="fas fa-star"></i></button>
+            <button style="max-width: 2rem;" data-action="playSound" data-tooltip="Play sound" data-path="{{sound.url}}"><i class="fas fa-play"></i></button>
+            <button style="max-width: 2rem;" data-action="stopSound" data-tooltip="Stop sound" data-path="{{sound.url}}"><i class="fas fa-stop"></i></button>
+            <button style="max-width: 2rem;" data-tooltip="Copy path to clipboard {{#if sound.customUrl}}(local path){{/if}}" class="{{#if sound.customUrl}}custom-url{{/if}}" data-action="copyClipboard" data-path="{{#if sound.customUrl}}{{sound.customUrl}}{{else}}{{sound.url}}{{/if}}"><i class="fas fa-copy"></i></button>
+            <button style="max-width: 2rem;" data-tooltip="Clone file to selected folder {{#if sound.customUrl}}(local copy already exists){{/if}}" class="{{#if sound.customUrl}}custom-url{{/if}}" data-action="copyFile" data-path="{{sound.url}}"><i class="fas fa-file-download"></i></button>
         </div>
     </li>
     {{/each}}

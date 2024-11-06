@@ -135,6 +135,7 @@ export class SoundBrowser extends HandlebarsApplication {
     async prepareMetadata() {
         if (__metadata) return __metadata;
         const secondsToMMSS = (seconds) => {
+            seconds = Math.round(seconds);
             const minutes = Math.floor(seconds / 60);
             const secondsLeft = seconds % 60;
             return `${minutes}:${secondsLeft < 10 ? "0" : ""}${secondsLeft}`;

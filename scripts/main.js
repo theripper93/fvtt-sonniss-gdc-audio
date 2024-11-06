@@ -21,7 +21,3 @@ Hooks.on("init", () => {
     });
 
 });
-
-Hooks.on("ready", () => {
-    new SoundBrowser().render(true);
-});

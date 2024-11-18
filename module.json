@@ -1,6 +1,6 @@
 {
   "title": "Sonniss GDC Audio",
-  "description": "desc",
+  "description": "This module is a complete collection containing all audio from Sonnis GDC Bundles (https://sonniss.com/gdc-bundle-license) in OGG format, in a single package, with a creator friendly interface that let's you easly add these Creative commons audio files to your own modules.",
   "id": "fvtt-sonniss-gdc-audio",
   "version": "1.0",
   "authors": [

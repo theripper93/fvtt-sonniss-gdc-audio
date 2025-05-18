@@ -223,7 +223,7 @@ export class SoundBrowser extends HandlebarsApplication {
                 this.renderDebounced();
             });
             content.querySelectorAll("button").forEach((button) => {
-                button.addEventListener("click", this[button.dataset.action].bind(this));
+                if(button.dataset.action) button.addEventListener("click", this[button.dataset.action].bind(this));
             });
             const folder = content.querySelector("#folder");
             folder.addEventListener("change", (e) => {

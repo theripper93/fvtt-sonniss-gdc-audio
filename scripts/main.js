@@ -8,14 +8,13 @@ Hooks.on("init", () => {
     initConfig();
     registerSettings();
 
-    Hooks.on("renderSidebarTab", (app, html) => {
-        if (!(app instanceof PlaylistDirectory)) return;
-        const buttonContainer = html[0].querySelector(".header-actions.action-buttons");
+    Hooks.on("renderPlaylistDirectory", (app, html) => {
+        const buttonContainer = html.querySelector(".header-actions.action-buttons");
         const button = document.createElement("button");
-        button.innerHTML = `<i class="fa-duotone fa-record-vinyl"></i> ${game.i18n.localize(`${MODULE_ID}.sidebarButtonText`)}`;
+        button.type = "button";
+        button.innerHTML = `<i class="fa-duotone fa-record-vinyl"></i> <span>${game.i18n.localize(`${MODULE_ID}.sidebarButtonText`)}</span>`;
         button.onclick = async (e) => {
             new SoundBrowser().render(true);
-
         };
         buttonContainer.appendChild(button);
     });

@@ -1,6 +1,6 @@
 import { MODULE_ID } from "../main.js";
 import { HandlebarsApplication, l } from "../lib/utils.js";
-import {getSetting, setSetting} from "../settings.js";
+import { getSetting, setSetting } from "../settings.js";
 
 let __metadata;
 
@@ -81,15 +81,17 @@ export class SoundBrowser extends HandlebarsApplication {
         if (!destination) return ui.notifications.error("No folder set.");
         const url = event.target.dataset.path ?? event.target.dataset.url;
         const filename = url.split("/").pop();
-        const newFileName = (__metadata.find((e) => e.url === url)?.displayName).slugify({strict: true}) + ".ogg";
+        const newFileName = (__metadata.find((e) => e.url === url)?.displayName).slugify({ strict: true }) + ".ogg";
         //first get the file as a blob
         const response = await fetch(url);
         const blob = await response.blob();
         //then create a file object
         const file = new File([blob], newFileName);
         //finally copy the file to the destination folder
-        const [source, dir] = new FilePicker()._inferCurrentDirectory(destination);
-        const res = await FilePicker.upload(source, dir, file);
+        const fp = new foundry.applications.apps.FilePicker({ current: destination });
+        const source = fp.activeSource;
+        const dir = fp.source.target;
+        const res = await foundry.applications.apps.FilePicker.upload(source, dir, file);
         const customMetadata = getSetting("customMetadata");
         customMetadata[filename] ??= {};
         customMetadata[filename].customUrl = res.path;
@@ -104,7 +106,7 @@ export class SoundBrowser extends HandlebarsApplication {
     async playSound(event) {
         const src = event.target.dataset.path;
         if (audioHelperSounds[src]) return;
-        const sound = await foundry.audio.AudioHelper.play({src, loop: false});
+        const sound = await foundry.audio.AudioHelper.play({ src, loop: false });
         audioHelperSounds[src] = sound;
     }
 
@@ -159,7 +161,7 @@ export class SoundBrowser extends HandlebarsApplication {
         const customMetadata = getSetting("customMetadata");
         __metadata = __metadata.map((m) => {
             const custom = customMetadata[m.filename];
-            if (custom) return {...m, ...custom};
+            if (custom) return { ...m, ...custom };
             return m;
         });
         __metadata = __metadata.sort((a, b) => a.displayName.localeCompare(b.displayName)).sort((a, b) => a.favorite ? -1 : b.favorite ? 1 : 0)
@@ -175,7 +177,7 @@ export class SoundBrowser extends HandlebarsApplication {
     _onRender(context, options) {
         super._onRender(context, options);
         const html = this.element;
-        this._updateFrame({window: {title: this.title}});
+        this._updateFrame({ window: { title: this.title } });
         //set drag data on li elements
         if (options.parts.includes("list")) {
             html.querySelectorAll("li").forEach((li) => {
@@ -186,7 +188,7 @@ export class SoundBrowser extends HandlebarsApplication {
                     const autoCopy = getSetting("autoCopy") && folder;
                     const inFolder = getSetting("customMetadata")[url.split("/").pop()]?.customUrl;
                     if (autoCopy && !inFolder) this.copyFile(e);
-                    const customPath = inFolder || (folder + "/" + ((__metadata.find((e) => e.url === url)?.displayName).slugify({strict: true}) + ".ogg"))
+                    const customPath = inFolder || (folder + "/" + ((__metadata.find((e) => e.url === url)?.displayName).slugify({ strict: true }) + ".ogg"))
                     e.dataTransfer.setData(
                         "text/plain",
                         JSON.stringify({
@@ -223,7 +225,7 @@ export class SoundBrowser extends HandlebarsApplication {
                 this.renderDebounced();
             });
             content.querySelectorAll("button").forEach((button) => {
-                if(button.dataset.action) button.addEventListener("click", this[button.dataset.action].bind(this));
+                if (button.dataset.action) button.addEventListener("click", this[button.dataset.action].bind(this));
             });
             const folder = content.querySelector("#folder");
             folder.addEventListener("change", (e) => {
@@ -239,13 +241,13 @@ export class SoundBrowser extends HandlebarsApplication {
         for (const m of metadata) {
             const include = term.every((term) => m.search.some((s) => s.includes(term)));
             if (include) results.push(m);
-            if(results.length >= MAX_RESULTS) break;
+            if (results.length >= MAX_RESULTS) break;
         }
         return results;
     }
 
     renderDebounced() {
-        this.render({parts: ["list"]});
+        this.render({ parts: ["list"] });
     }
 
     _onClose(options) {
